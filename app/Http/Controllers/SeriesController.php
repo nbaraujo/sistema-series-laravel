@@ -19,10 +19,13 @@ class SeriesController extends Controller
 
     public function store(Request $request){
 
-        $serie = new Serie();
-        $serie->nome = $request->nome;
-        $serie->save();
+        Serie::Create($request->all());
+        return to_route('series.index');
+    }
 
-        return redirect('/series');
+
+    public function destroy(Request $request){
+        Serie::destroy($request->series);
+        return to_route('series.index');
     }
 }
